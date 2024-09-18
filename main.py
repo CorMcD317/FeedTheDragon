@@ -111,8 +111,8 @@ while running:
     display_surface.blit(score_text, score_rect)
     display_surface.blit(title_text, title_rect)
     display_surface.blit(lives_text, Lives_rect)
-    player_image.blit(player_image, player_rect)
-    coin_image.blit(coin_image, coin_rect)
+    display_surface.blit(player_image, player_rect)
+    display_surface.blit(coin_image, coin_rect)
 
 
 
