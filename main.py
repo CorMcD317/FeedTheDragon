@@ -27,6 +27,7 @@ Starting_Coin_Acceleration = 0.5
 score = 0
 Buffer_Distance = 100
 
+
 '''constant player lives set it = to the constant above'''
 Lives = Starting_Lives
 '''constant coin velocity  set it = to the constant above'''
@@ -50,18 +51,18 @@ score_rect.topleft = (10, 10)
 
 # Title Text
 ''' same deal as score'''
-title_text = font.render("Feed_The_Dragon", True, GREEN, WHITE)
+title_text = font.render("Feed The Dragon", True, GREEN, WHITE)
 title_rect = title_text.get_rect()
 title_rect.centerx = WINDOW_WIDTH / 2
 title_rect.y = 10
 
 # Lives Text
-lives_text = font.render("Lives:" + str(Lives), True, GREEN, DARK_GREEN)
+lives_text = font.render("Lives: " + str(Lives), True, GREEN, DARK_GREEN)
 Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
 # You Suck Text
-game_over_text = font.render("You Suck", True, GREEN, DARK_GREEN)
+game_over_text = font.render("You Suck, Do Better", True, GREEN, DARK_GREEN)
 game_over_rect = game_over_text.get_rect()
 game_over_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
 
@@ -75,7 +76,7 @@ continue_text_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 32)
 coin_sound = pygame.mixer.Sound("coin_sound.wav")
 
 miss_sound = pygame.mixer.Sound("miss_sound.wav")
-
+#miss_sound_volume = pygame.mixer_music.set_volume(0.1)
 pygame.mixer.music.load("ftd_background_music.wav")
 
 
@@ -94,12 +95,31 @@ pygame.mixer.music.play(-1, 0.0)
 
 
 
+
+
+
+
+
+
+
+
+
 # Main Game Loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP] and player_rect.top > 64:
+            player_rect.y -= Starting_Velocity
+    if keys[pygame.K_DOWN] and player_rect.bottom < WINDOW_HEIGHT:
+            player_rect.y += Starting_Velocity
+
+
 
     # UPDATE HUD
     score_text = font.render("Score:" + str(score), True, GREEN, DARK_GREEN)
