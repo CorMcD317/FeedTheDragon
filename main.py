@@ -26,6 +26,7 @@ Starting_Coin_Acceleration = 0.5
 '''constant for tracking score start at 0'''
 score = 0
 Buffer_Distance = 100
+'''constant for speeding up the player to keep up with the coins'''
 
 
 '''constant player lives set it = to the constant above'''
@@ -35,7 +36,8 @@ CoinVelocity = Starting_Coin_Velocity
 
 
 # Set colors
-ONEEYEDONEHORNEDFLYINGPURPLEPEOPLEEATER = (15, 0, 20)
+OneEyedONneHornedFlyingPurplePeopleEater = (15, 0, 20)
+RED = (86, 3, 25)
 GREEN = (0, 255, 0)
 DARK_GREEN = (10, 50, 10)
 WHITE = (255, 255, 255)
@@ -52,7 +54,7 @@ score_rect.topleft = (10, 10)
 
 # Title Text
 ''' same deal as score'''
-title_text = font.render("Feed The Dragon", True, GREEN, WHITE)
+title_text = font.render("Feed The Dragon", True, RED, BLACK)
 title_rect = title_text.get_rect()
 title_rect.centerx = WINDOW_WIDTH / 2
 title_rect.y = 10
@@ -63,7 +65,7 @@ Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
 # You Suck Text
-game_over_text = font.render("You Suck, Do Better", True, GREEN, DARK_GREEN)
+game_over_text = font.render("You Suck, Do Better", True, RED, DARK_GREEN)
 game_over_rect = game_over_text.get_rect()
 game_over_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
 
@@ -102,13 +104,32 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-
-
+    #Check for movement
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP] and player_rect.top > 64:
         player_rect.y -= Starting_Velocity
     if keys[pygame.K_DOWN] and player_rect.bottom < WINDOW_HEIGHT:
         player_rect.y += Starting_Velocity
+
+    #Coin Movement
+    if coin_rect.x < 0:
+        #Miss Coin
+        Lives -= 1
+        miss_sound.play()
+        coin_rect.centerx = WINDOW_WIDTH + Buffer_Distance
+        coin_rect.centery = random.randint(64, WINDOW_HEIGHT - 32)
+    else:
+        #Move the Coin
+        coin_rect.x -= CoinVelocity
+
+    #Check for Collisions
+    if player_rect.colliderect(coin_rect):
+        score += 1
+        coin_sound.play()
+        CoinVelocity += Starting_Coin_Acceleration
+        coin_rect.centerx = WINDOW_WIDTH + Buffer_Distance
+        coin_rect.centery = random.randint(64, WINDOW_HEIGHT - 32)
+
 
 
 
@@ -116,8 +137,32 @@ while running:
     score_text = font.render("Score:" + str(score), True, GREEN, DARK_GREEN)
     lives_text = font.render("Lives:" + str(Lives), True, GREEN, DARK_GREEN)
 
+    #Game Over Check
+    if Lives == 0:
+        display_surface.blit(game_over_text, game_over_rect)
+        display_surface.blit(continue_text, continue_text_rect)
+        pygame.display.update()
+
+        #pause game till reset
+        pygame.mixer.music.stop()
+        is_paused = True
+        while is_paused:
+            for event in pygame.event.get():
+                #play again
+                if event.type == pygame.KEYDOWN:
+                    score = 0
+                    Lives = Starting_Lives
+                    player_rect.y = WINDOW_HEIGHT // 2
+                    CoinVelocity = Starting_Coin_Velocity
+                    pygame.mixer.music.play(-1, 0.0)
+                    is_paused = False
+                if event.type == pygame.QUIT:
+                    is_paused = False
+                    running = False
+
+
     # Fill the Display
-    display_surface.fill(ONEEYEDONEHORNEDFLYINGPURPLEPEOPLEEATER)
+    display_surface.fill(OneEyedONneHornedFlyingPurplePeopleEater)
 
     display_surface.blit(score_text, score_rect)
     display_surface.blit(title_text, title_rect)
