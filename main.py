@@ -27,13 +27,13 @@ Starting_Coin_Acceleration = 0.5
 score = 0
 Buffer_Distance = 100
 '''constant for speeding up the player to keep up with the coins'''
-Speed_Add = 0.5
+Speed = 0.5
 
 '''constant player lives set it = to the constant above'''
 Lives = Starting_Lives
 '''constant coin velocity  set it = to the constant above'''
 CoinVelocity = Starting_Coin_Velocity
-
+PlayerSpeed = Starting_Velocity
 
 # Set colors
 OneEyedONneHornedFlyingPurplePeopleEater = (15, 0, 20)
@@ -129,7 +129,7 @@ while running:
         CoinVelocity += Starting_Coin_Acceleration
         coin_rect.centerx = WINDOW_WIDTH + Buffer_Distance
         coin_rect.centery = random.randint(64, WINDOW_HEIGHT - 32)
-
+        PlayerSpeed += Speed
 
 
 
@@ -154,6 +154,7 @@ while running:
                     Lives = Starting_Lives
                     player_rect.y = WINDOW_HEIGHT // 2
                     CoinVelocity = Starting_Coin_Velocity
+                    PlayerSpeed = Starting_Velocity
                     pygame.mixer.music.play(-1, 0.0)
                     is_paused = False
                 if event.type == pygame.QUIT:
