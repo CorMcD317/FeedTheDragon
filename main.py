@@ -27,7 +27,7 @@ Starting_Coin_Acceleration = 0.5
 score = 0
 Buffer_Distance = 100
 '''constant for speeding up the player to keep up with the coins'''
-
+Speed_Add = 0.5
 
 '''constant player lives set it = to the constant above'''
 Lives = Starting_Lives
