@@ -35,6 +35,7 @@ CoinVelocity = Starting_Coin_Velocity
 
 
 # Set colors
+ONEEYEDONEHORNEDFLYINGPURPLEPEOPLEEATER = (15, 0, 20)
 GREEN = (0, 255, 0)
 DARK_GREEN = (10, 50, 10)
 WHITE = (255, 255, 255)
@@ -57,7 +58,7 @@ title_rect.centerx = WINDOW_WIDTH / 2
 title_rect.y = 10
 
 # Lives Text
-lives_text = font.render("Lives: " + str(Lives), True, GREEN, DARK_GREEN)
+lives_text = font.render("Lives:" + str(Lives), True, GREEN, DARK_GREEN)
 Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
@@ -94,16 +95,6 @@ coin_rect.centery = random.randint(64, WINDOW_HEIGHT - 32)
 pygame.mixer.music.play(-1, 0.0)
 
 
-
-
-
-
-
-
-
-
-
-
 # Main Game Loop
 running = True
 while running:
@@ -115,9 +106,9 @@ while running:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP] and player_rect.top > 64:
-            player_rect.y -= Starting_Velocity
+        player_rect.y -= Starting_Velocity
     if keys[pygame.K_DOWN] and player_rect.bottom < WINDOW_HEIGHT:
-            player_rect.y += Starting_Velocity
+        player_rect.y += Starting_Velocity
 
 
 
@@ -126,14 +117,14 @@ while running:
     lives_text = font.render("Lives:" + str(Lives), True, GREEN, DARK_GREEN)
 
     # Fill the Display
-    display_surface.fill(BLACK)
+    display_surface.fill(ONEEYEDONEHORNEDFLYINGPURPLEPEOPLEEATER)
 
     display_surface.blit(score_text, score_rect)
     display_surface.blit(title_text, title_rect)
     display_surface.blit(lives_text, Lives_rect)
     display_surface.blit(player_image, player_rect)
     display_surface.blit(coin_image, coin_rect)
-
+    pygame.draw.line(display_surface, WHITE, (0, 64), (WINDOW_WIDTH, 64), 2)
 
 
 
