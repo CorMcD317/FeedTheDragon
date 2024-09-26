@@ -8,26 +8,21 @@ pygame.init()
 WINDOW_WIDTH = 1000
 WINDOW_HEIGHT = 400
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("Feed The Dragon")
+pygame.display.set_caption("Cookie Monster Isn't A Muppet")
+pygame.display.set_icon(pygame.image.load('CookieMonster2.png'))
 
 # Set FPS and clock
 FPS = 60
 clock = pygame.time.Clock()
 
-# Set game values
-'''constant for player lives starting at 5'''
+# Set game values, Constants
 Starting_Lives = 5
-'''constant for velocity starting at 10'''
 Starting_Velocity = 10
-'''constant for coin velocity starting at 10'''
 Starting_Coin_Velocity = 10
-'''constant for coin acceleration of 0.5'''
 Starting_Coin_Acceleration = 0.5
-'''constant for tracking score start at 0'''
 score = 0
 Buffer_Distance = 100
-'''constant for speeding up the player to keep up with the coins'''
-Speed = 0.5
+Speed = 0.75
 
 '''constant player lives set it = to the constant above'''
 Lives = Starting_Lives
@@ -37,6 +32,7 @@ PlayerSpeed = Starting_Velocity
 
 # Set colors
 OneEyedONneHornedFlyingPurplePeopleEater = (15, 0, 20)
+ORANGE = (255, 159, 0)
 RED = (86, 3, 25)
 GREEN = (0, 255, 0)
 DARK_GREEN = (10, 50, 10)
@@ -67,12 +63,12 @@ Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
 # You Suck Text
-game_over_text = fontgo.render("You Suck, Do Better", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
+game_over_text = fontgo.render("You Suck, Do Better.", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 game_over_rect = game_over_text.get_rect()
 game_over_rect.center = (WINDOW_WIDTH // 2, (WINDOW_HEIGHT // 2) - 10)
 
 # Continue Text
-continue_text = fontgo.render("Try Again", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
+continue_text = fontgo.render("Would You Like To Try Again?", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 continue_text_rect = continue_text.get_rect()
 continue_text_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 32)
 
@@ -128,9 +124,9 @@ while running:
         score += 1
         coin_sound.play()
         CoinVelocity += Starting_Coin_Acceleration
+        PlayerSpeed += Speed
         coin_rect.centerx = WINDOW_WIDTH + Buffer_Distance
         coin_rect.centery = random.randint(64, WINDOW_HEIGHT - 32)
-        PlayerSpeed += Speed
 
 
 
@@ -171,7 +167,7 @@ while running:
     display_surface.blit(lives_text, Lives_rect)
     display_surface.blit(player_image, player_rect)
     display_surface.blit(coin_image, coin_rect)
-    pygame.draw.line(display_surface, WHITE, (0, 64), (WINDOW_WIDTH, 64), 2)
+    pygame.draw.line(display_surface, ORANGE, (0, 64), (WINDOW_WIDTH, 64), 2)
 
 
 
