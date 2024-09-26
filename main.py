@@ -45,6 +45,8 @@ BLACK = (0, 0, 0)
 
 # Set fonts
 font = pygame.font.Font('AttackGraffiti.ttf', 32)
+fontgo = pygame.font.Font('EBGaramond-VariableFont_wght.ttf', 40)
+
 
 # Set text
 # Score Text
@@ -54,7 +56,7 @@ score_rect.topleft = (10, 10)
 
 # Title Text
 ''' same deal as score'''
-title_text = font.render("Feed The Dragon", True, RED, BLACK)
+title_text = font.render("Feed The Dragon", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 title_rect = title_text.get_rect()
 title_rect.centerx = WINDOW_WIDTH / 2
 title_rect.y = 10
@@ -65,13 +67,12 @@ Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
 # You Suck Text
-game_over_text = font.render("You Suck, Do Better", True, RED, DARK_GREEN)
+game_over_text = fontgo.render("You Suck, Do Better", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 game_over_rect = game_over_text.get_rect()
-game_over_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+game_over_rect.center = (WINDOW_WIDTH // 2, (WINDOW_HEIGHT // 2) - 10)
 
 # Continue Text
-
-continue_text = font.render("Press any Key to play again:", True, GREEN, DARK_GREEN)
+continue_text = fontgo.render("Try Again", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 continue_text_rect = continue_text.get_rect()
 continue_text_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 32)
 
