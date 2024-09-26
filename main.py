@@ -63,7 +63,7 @@ Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
 # You Suck Text
-game_over_text = fontgo.render("You Suck, Do Better.", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
+game_over_text = fontgo.render("Cookie Monster Isn't A Muppet", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 game_over_rect = game_over_text.get_rect()
 game_over_rect.center = (WINDOW_WIDTH // 2, (WINDOW_HEIGHT // 2) - 10)
 
