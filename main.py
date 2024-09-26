@@ -22,7 +22,7 @@ Starting_Coin_Velocity = 10
 Starting_Coin_Acceleration = 0.5
 score = 0
 Buffer_Distance = 100
-Speed = 0.75
+Speed = 1
 
 '''constant player lives set it = to the constant above'''
 Lives = Starting_Lives
@@ -63,7 +63,7 @@ Lives_rect = lives_text.get_rect()
 Lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 
 # You Suck Text
-game_over_text = fontgo.render("You Suck, Do Better.", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
+game_over_text = fontgo.render("You Suck. Do Better.", True, RED, OneEyedONneHornedFlyingPurplePeopleEater)
 game_over_rect = game_over_text.get_rect()
 game_over_rect.center = (WINDOW_WIDTH // 2, (WINDOW_HEIGHT // 2) - 10)
 
