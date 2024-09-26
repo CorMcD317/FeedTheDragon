@@ -81,12 +81,12 @@ pygame.mixer.music.load("ftd_background_music.wav")
 
 
 #Images
-player_image = pygame.image.load("dragon_right.png")
+player_image = pygame.image.load("CookieMonster.png")
 player_rect = player_image.get_rect()
 player_rect.left = 32
 player_rect.centery = WINDOW_HEIGHT // 2
 
-coin_image = pygame.image.load("coin.png")
+coin_image = pygame.image.load("Cookie.png")
 coin_rect = coin_image.get_rect()
 coin_rect.centerx = WINDOW_WIDTH + Buffer_Distance
 coin_rect.centery = random.randint(64, WINDOW_HEIGHT - 32)
