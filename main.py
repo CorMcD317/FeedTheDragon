@@ -21,8 +21,8 @@ Starting_Clown_Velocity = 10
 Clown_Acceleration = 0.5
 score = 0
 Buffer_Distance = 100
-clown_dx = random.choice(-1, 1)
-clown_dy = random.choice(-1, 1)
+clown_dx = random.choice([-1, 1])
+clown_dy = random.choice([-1, 1])
 
 '''constant player lives set it = to the constant above'''
 Lives = Starting_Lives
@@ -47,7 +47,7 @@ score_rect.topleft = (10, 10)
 
 # Title Text
 ''' same deal as score'''
-title_text = font.render("Feed The Dragon", True, BLUE, YELLOW)
+title_text = font.render("Catch The Clown", True, BLUE, YELLOW)
 title_rect = title_text.get_rect()
 title_rect.centerx = WINDOW_WIDTH / 2
 title_rect.y = 10
@@ -106,6 +106,7 @@ while running:
 
             previous_dx = clown_dx
             previous_dy = clown_dy
+            while (previous_dx == clown_dx and previous_dy == clown_dy):
 
 
 
@@ -114,8 +115,6 @@ while running:
 
 
 
-
-    # UPDATE HUD
     score_text = font.render("Score:" + str(score), True, YELLOW)
     lives_text = font.render("Lives:" + str(Lives), True, YELLOW)
 
